@@ -21,6 +21,12 @@ function useFormValidation(initialState, validate) {
   }, [errors]);
 
   function handleChange(event) {
+
+    // https://ru.reactjs.org/docs/events.html
+        // Если вы всё же хотите обратиться к полям события асинхронно, вам нужно вызвать event.persist() на событии.
+        // Тогда оно будет извлечено из пула, что позволит вашему коду удерживать ссылки на это событие.
+    //  В видео на 8:10 раздел3 №8 объяснено
+
     event.persist();
     setValues(previousValues => ({
       ...previousValues,
