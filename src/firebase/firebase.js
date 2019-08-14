@@ -9,6 +9,9 @@ class Firebase {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.db = app.firestore();
+    this.auth.languageCode='ru';
+    this.providerGoogle = new app.auth.GoogleAuthProvider();
+    //  this.providerGoogle = new this.auth.GoogleAuthProvider();
   }
 
   async register(name, email, password) {
@@ -24,6 +27,17 @@ class Firebase {
   async login(email, password) {
     return await this.auth.signInWithEmailAndPassword(email, password);
   }
+
+  async loginGoogle() {
+    let res = await this.auth.signInWithPopup(this.providerGoogle);
+    // let res = await this.auth.signInWithRedirect(this.providerGoogle);
+
+    console.log(res);
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    console.log(res.credential.accessToken);
+    return res;
+  }
+
 
   async logout() {
     await this.auth.signOut();
