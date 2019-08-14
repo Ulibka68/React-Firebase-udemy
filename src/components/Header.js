@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter, NavLink } from "react-router-dom";
 import { FirebaseContext } from "../firebase";
 
+
 function Header() {
   const { user, firebase } = React.useContext(FirebaseContext);
 
@@ -32,6 +33,10 @@ function Header() {
           </>
         )}
       </div>
+      <div className="flex">
+        <div className="header-button" onClick={() => firebase.loginGoogle()  }>Login через google </div>
+      </div>
+
       <div className="flex">
         {user ? (
           <>
